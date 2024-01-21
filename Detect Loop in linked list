@@ -1,0 +1,38 @@
+C++ code implementation
+
+
+Time Complexity O(n) and Space Complexity O(n)
+
+bool detectLoop(Node* head)
+    {
+        unordered_map<Node*,bool> mp;
+        Node* temp = head;
+        
+        while(temp){
+            
+            if(mp.find(temp)!=mp.end()){
+                return true;
+            }
+            
+            mp[temp] = true;
+            temp = temp->next;
+            
+        }
+        return false;
+    }
+
+
+Time Complexity O(n) and Space Complexity O(1)
+
+bool detectLoop(Node* head)
+    {
+        if(!head) return false;
+        Node *slow = head,*fast = head;
+        while(fast&&fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow==fast)
+            return true;
+        }
+        return false;
+    }
